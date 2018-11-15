@@ -1,56 +1,57 @@
 #include <stdio.h>
 
-int add(int a, int b)
-{
-	return a+b;
-}
-
-int substract(int a, int b)
-{
-	return a-b;
-}
-
-int multiply(int a, int b)
-{
-	return a*b;
-}
-
-int divide(int a, int b)
-{
-	return a/b;
-}
-
+void print_image();
+void brighten_image();
 int main(void)
 {
-	int a, b;
-	char c;
+	int image[5][5] = {
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50}
+	};
 	
-	int (*calculate)(int, int);
+	print_image(image);
 	
-	printf("수식을 입력하시오 : ");
-	scanf("%d %c %d", &a, &c, &b);
+	brighten_image(image);
 	
-	switch(c)
-	{
-		case '+': 
-			calculate = add;
-			break;
-		
-		case '-': 
-			calculate = substract;
-			break;
-			
-		case'*': 
-			calculate = multiply;
-			break;
-		
-		case '/'
-		: 
-			calculate = divide;
-			break;		
-	}
-	
-	printf("result : %i\n", calculate(a, b));
+	print_image(image);
 	
 	return 0;
+}
+
+void print_image(int image[5][5])
+{
+	int i, j;
+	int *ptr = &image[0][0];
+	
+	for(i=0; i<5; i++)
+	{
+		for(j=0; j<5; j++)
+		{
+			printf("%d ", *ptr);
+			
+			ptr += 1;
+		}
+		printf("\n");
+	}
+	
+	printf("\n");
+}
+
+void brighten_image(int image[5][5])
+{
+	int i, j;
+	int *ptr = &image[0][0];
+	
+	for(i=0; i<5; i++)
+	{
+		for(j=0; j<5; j++)
+		{						
+			*ptr += 10;
+			
+			ptr += 1;
+		}
+	}
 }
