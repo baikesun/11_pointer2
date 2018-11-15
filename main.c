@@ -1,16 +1,19 @@
 #include <stdio.h>
 
+char *proverb = "All that glisters is not gold.";
+
+void setPointer(char **q)
+{
+	*q = proverb;
+}
+
 int main(void)
 {
-	int i = 100;
-	int *p = &i;
-	int **q = &p;
+	char *p = "zzz";
 	
-	*p = 200;
-	printf("i = %d, *p = %d, **q = %d\n", i, *p, **q);
+	setPointer(&p);
 	
-	**q = 300;
-	printf("i = %d, *p = %d, **q = %d", i, *p, **q);
+	printf("%s\n", p);
 	
 	return 0;
 }
